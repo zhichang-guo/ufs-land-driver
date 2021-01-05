@@ -2,11 +2,11 @@
 
 ufs-land-driver: a simple land driver for the UFS land models
 
-This is a primary tree starting at the program 'ufsLandDriver'<br>
+<pre>This is a primary tree starting at the program 'ufsLandDriver'<br>
 
 ufsLandDriver<br>
 +-ufsLandNoahMPDriverInit-+-static%ReadStatic (read in dimension length for location and soil_levels, read in latitude,<br>
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;longitude,vegetation_category,soil_category,slope_category,<br>
+|                         |                    longitude,vegetation_category,soil_category,slope_category,<br>
 |                         |                    deep_soil_temperature,elevation,land_mask,soil_level_thickness,<br>
 |                         |                    soil_level_nodes,max_snow_albedo,emissivity,gvf_monthly,albedo_monthly,<br>
 |                         |                    lai_monthly,z0_monthly,iswater,isice,isurban,land_cover_source,<br>
@@ -71,4 +71,4 @@ ufsLandDriver<br>
 |                        |                             |       +-SHALLOWWATERTABLE<br>
 |                        |                             +-CARBON-+-CO2FLUX<br>
 |                        +-WriteOutputNoahMP<br>
-+-ufsLandNoahMPDriverFinalize<br>
++-ufsLandNoahMPDriverFinalize<br></pre>
