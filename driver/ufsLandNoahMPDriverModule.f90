@@ -125,6 +125,7 @@ associate (                                                      &
    wind       => forcing%wind_speed                             ,&
    tprcp      => forcing%precipitation                          ,&
    im         => namelist%subset_length                         ,&
+   im_start   => namelist%subset_start                          ,&
    km         => noahmp%static%soil_levels                      ,&
    delt       => noahmp%static%timestep                         ,&
    isot       => noahmp%static%soil_source                      ,&
@@ -373,7 +374,8 @@ time_loop : do timestep = 1, namelist%run_timesteps
   if(iopt_sfc == 4) do_mynnsfclay = .true.
 
       call noahmpdrv_run                                               &
-          ( im, km, lsnowl, itime, ps, u1, v1, t1, q1, soiltyp,soilcol,&
+          ( im_start,                                                  &
+            im, km, lsnowl, itime, ps, u1, v1, t1, q1, soiltyp,soilcol,&
             vegtype,sigmaf, dlwflx, dswsfc, snet, delt, tg3, cm, ch,   &
             prsl1, prslk1, prslki, prsik1, zf,pblh, dry, wind, slopetyp,    &
             shdmin, shdmax, snoalb, sfalb, flag_iter,con_g,            &
