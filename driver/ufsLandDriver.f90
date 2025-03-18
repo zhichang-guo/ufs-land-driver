@@ -34,7 +34,6 @@ program ufsLandDriver
   namelist%subset_start  = namelist%location_start
   namelist%subset_end    = namelist%location_end
   namelist%subset_length = namelist%location_end - namelist%location_start + 1
-  print*, namelist%location_start, namelist%location_end, namelist%subset_length
   
   land_model : select case(namelist%land_model)
   
