@@ -167,7 +167,8 @@ contains
 
   end if
   
-  write(*,*) "Starting first read: "//trim(forcing_filename)
+! GZCS
+! write(*,*) "Starting first read: "//trim(forcing_filename)
   
   status = nf90_open(forcing_filename, NF90_NOWRITE, ncid)
    if (status /= nf90_noerr) call handle_err(status)
@@ -267,7 +268,8 @@ contains
   call date_from_since(namelist%reference_date, now_time, now_date)
   call date_from_since(namelist%reference_date, next_time, next_date)
   
-  write(*,*) "Searching for forcing at time: ",now_date
+! GZCS
+! write(*,*) "Searching for forcing at time: ",now_date
   
   if(.not. next_forcing_done) then
   
@@ -279,21 +281,24 @@ contains
         forcing_filename = trim(forcing_filename)//next_date(1:7)//".nc"
         if(next_date(9:19) == "01 00:00:00") then
           this%forcing_counter = 1
-          write(*,*) "Resetting forcing counter to beginning of file"
+! GZCS
+!         write(*,*) "Resetting forcing counter to beginning of file"
         end if
       case ("mm_1h")
         forcing_filename = trim(namelist%forcing_dir)//"/"//trim(namelist%forcing_filename)
         forcing_filename = trim(forcing_filename)//next_date(1:7)//".nc"
         if(next_date(9:19) == "01 00:00:00") then
           this%forcing_counter = 1
-          write(*,*) "Resetting forcing counter to beginning of file"
+! GZCS
+!         write(*,*) "Resetting forcing counter to beginning of file"
         end if
       case ("dd_1h")
         forcing_filename = trim(namelist%forcing_dir)//"/"//trim(namelist%forcing_filename)
         forcing_filename = trim(forcing_filename)//next_date(1:10)//".nc"
         if(next_date(12:19) == "00:00:00") then
           this%forcing_counter = 1
-          write(*,*) "Resetting forcing counter to beginning of file"
+! GZCS
+!         write(*,*) "Resetting forcing counter to beginning of file"
         end if
       case default
         stop "namelist forcing_type not recognized"

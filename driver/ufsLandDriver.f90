@@ -16,18 +16,25 @@ program ufsLandDriver
   type (namelist_type) :: namelist
   type (static_type)   :: static
   type (forcing_type)  :: forcing
-  type (mpi_land_type) :: mpi_land
+! GZCM
+! type (mpi_land_type) :: mpi_land
   
   integer, parameter :: NOAH_LAND_SURFACE_MODEL = 1
   integer, parameter :: NOAHMP_LAND_SURFACE_MODEL = 2
 
   call namelist%ReadNamelist()
   
-  call mpi_land_init(namelist%location_length,mpi_land)
+! GZCM
+! call mpi_land_init(namelist%location_length,mpi_land)
   
-  namelist%subset_start  = mpi_land%location_start + namelist%location_start - 1
-  namelist%subset_end    = mpi_land%location_end + namelist%location_start - 1
-  namelist%subset_length = mpi_land%location_end - mpi_land%location_start + 1
+! GZCM
+! namelist%subset_start  = mpi_land%location_start + namelist%location_start - 1
+! namelist%subset_end    = mpi_land%location_end + namelist%location_start - 1
+! namelist%subset_length = mpi_land%location_end - mpi_land%location_start + 1
+  namelist%subset_start  = namelist%location_start
+  namelist%subset_end    = namelist%location_end
+  namelist%subset_length = namelist%location_end - namelist%location_start + 1
+  print*, namelist%location_start, namelist%location_end, namelist%subset_length
   
   land_model : select case(namelist%land_model)
   
@@ -53,7 +60,8 @@ program ufsLandDriver
 
   end select land_model
    
-  call mpi_land_finalize()
+! GZCM
+! call mpi_land_finalize()
   
 end program
 

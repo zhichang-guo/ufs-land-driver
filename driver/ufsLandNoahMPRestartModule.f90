@@ -52,10 +52,13 @@ contains
 
   this%filename = trim(namelist%restart_dir)//"/"//trim(this%filename)
 
-  write(*,*) "Creating: "//trim(this%filename)
+! GZCS
+! write(*,*) "Creating: "//trim(this%filename)
 
-  status = nf90_create(this%filename, NF90_NETCDF4, ncid, comm = MPI_COMM_WORLD, &
-     info = MPI_INFO_NULL)
+! GZCM
+! status = nf90_create(this%filename, NF90_NETCDF4, ncid, comm = MPI_COMM_WORLD, &
+!    info = MPI_INFO_NULL)
+  status = nf90_create(this%filename, NF90_NETCDF4, ncid)
     if (status /= nf90_noerr) call handle_err(status)
 
 ! Define dimensions in the file.
@@ -92,11 +95,13 @@ contains
 ! Start writing restart file
   
   status = nf90_inq_varid(ncid, "time", varid)
-  status = nf90_var_par_access(ncid, varid, NF90_COLLECTIVE)
+! GZCM
+! status = nf90_var_par_access(ncid, varid, NF90_COLLECTIVE)
   status = nf90_put_var(ncid, varid , now_time             )
   
   status = nf90_inq_varid(ncid, "timestep", varid)
-  status = nf90_var_par_access(ncid, varid, NF90_COLLECTIVE)
+! GZCM
+! status = nf90_var_par_access(ncid, varid, NF90_COLLECTIVE)
   status = nf90_put_var(ncid, varid , noahmp%static%timestep   )
   
   call WriteNoahMP(restart, namelist, noahmp, ncid, 1)
@@ -140,7 +145,8 @@ contains
 
   this%filename = trim(namelist%restart_dir)//"/"//trim(this%filename)
 
-  write(*,*) "Reading: "//trim(this%filename)
+! GZCS
+! write(*,*) "Reading: "//trim(this%filename)
     
   status = nf90_open(this%filename, NF90_NOWRITE, ncid)
    if (status /= nf90_noerr) call handle_err(status)
