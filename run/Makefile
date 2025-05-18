@@ -40,6 +40,7 @@ OBJS =	../driver/ufsLandDriver.o \
 	../mod/module_sf_noahmp_glacier.o \
 	../mod/module_sf_noahmplsm.o \
 	../mod/noahmp_tables.o \
+	../mod/lnd_iau_mod.o \
 	../mod/noahmpdrv.o \
 	../mod/sfc_diff.o
 
