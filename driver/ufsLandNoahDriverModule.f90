@@ -76,7 +76,7 @@ real, allocatable, dimension(:) :: rho
 real, allocatable, dimension(:) :: albdvis_lnd, albdnir_lnd, albivis_lnd, albinir_lnd, &
                                    adjvisbmd, adjnirbmd, adjvisdfd, adjnirdfd, rhonewsn1
 real, allocatable, dimension(:) :: prsik1,prslk1,ustar,rb,stress,fm,fh,fm10,fh2,z0pert,ztpert, &
-                                   garea,fake  ! some fields needed for sfc_diff
+                                   garea,fake,zero  ! some fields needed for sfc_diff
 logical, allocatable, dimension(:) :: lfake
 
 logical                            :: exticeden
@@ -173,6 +173,7 @@ allocate(   fh2(im))
 allocate(z0pert(im))
 allocate(ztpert(im))
 allocate(  fake(im))
+allocate(  zero(im))
 allocate( garea(im))
 allocate( lfake(im))
 allocate(   rho(im))
@@ -193,6 +194,7 @@ vegfpert = 0.d0
 z0pert   = 0.d0
 ztpert   = 0.d0
 fake     = -999._kind_phys
+zero     = 0._kind_phys
 lfake    = .false.
 ustar    =  0.1
 rb       =  0.1
@@ -246,7 +248,7 @@ time_loop : do timestep = 1, namelist%run_timesteps
                          sigmaf,vegtype,shdmax,ivegsrc,            &  !intent(in)
                          z0pert,ztpert,                            &  ! mg, sfc-perts !intent(in)
                          flag_iter,.false.,                        &  !intent(in)
-                         lfake,                                    &  !intent(in)
+                         lfake,zero,zero,                          &  !intent(in) flag_lakefreeze,lakefrac,fice
                          fake,fake,-999,                           &  !hafs,z0 type !intent(in)
                          fake,fake,fake,fake,-999,                 &  !additional hafs
                          lfake,land,lfake,                         &  !intent(in)
