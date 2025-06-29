@@ -1,0 +1,13 @@
+#===============================================================================
+#  Baseline configuration for NOAA Ursa parallel build
+#===============================================================================
+#
+ NETCDF      =  /contrib/spack-stack/spack-stack-1.9.1/envs/ue-oneapi-2024.2.1/install/oneapi/2024.2.1/netcdf-fortran-4.6.1-f7mmjf3
+#COMPILERF90 =  /apps/spack-2024-12/linux-rocky9-x86_64/oneapi-2024.2.1/intel-oneapi-mpi-2021.13.1-ss72gbndvat3oz22sa6lhmlbjkeabrn4/mpi/2021.13/bin/mpifc
+ FREESOURCE  =  #-ffree-form  -ffree-line-length-none
+ COMPILERF90 =  /apps/spack-2024-12/linux-rocky9-x86_64/oneapi-2024.2.1/intel-oneapi-mpi-2021.13.1-ss72gbndvat3oz22sa6lhmlbjkeabrn4/mpi/2021.13/bin/mpiifx
+ F90FLAGS    =  -r8 -init=huge -diag-disable=10448
+ NETCDFMOD   =  -I${NETCDF}/include
+ NETCDFLIB   =  -L${NETCDF}/lib -lnetcdff
+ PHYSDIR     =  ../ccpp-physics/physics
+ export LD_LIBRARY_PATH="${NETCDFDIR}:$LD_LIBRARY_PATH"
